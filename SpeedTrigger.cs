@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/* This script increases an object's running speed when it enters the collision area 
- * and descreases it when it leaves the collision area.*/
+// This script increases player speed when they step on arrow 
 
 public class SpeedTrigger : MonoBehaviour
 {
-    public float speedFactor = 2.5f;
+    public int speedIncrease = 10;
 
-    //Runs when collider is entered
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider player)
     {
-        //Increases run speed 
-        other.GetComponent<FirstPersonMovement>().runSpeed *= speedFactor;
-        Debug.Log("Speed increased!");
+        //object.GetComponent<component>().property 
+        player.GetComponent<FirstPersonMovement>().speed += speedIncrease;
+        print("Player speed increased!");
     }
 
-    // Runs when collider is exited
-    public void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider player)
     {
-        // Decrease run speed
-        other.GetComponent<FirstPersonMovement>().runSpeed /= speedFactor;
-        Debug.Log("Speed decreased!");
+        //object.GetComponent<component>().property 
+        player.GetComponent<FirstPersonMovement>().speed -= speedIncrease;
+        print("Player speed decreased!");
     }
 
 }
